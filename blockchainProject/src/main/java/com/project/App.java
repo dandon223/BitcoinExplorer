@@ -12,7 +12,6 @@ public final class App {
      * @param args The arguments of the program.
      */
     public static void main(String[] args) {
-        Systm.out.println("Hello World!");
-        randomnosie
+        System.out.println("Hello World!");
     }
 }
