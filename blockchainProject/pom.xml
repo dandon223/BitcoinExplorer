@@ -103,6 +103,7 @@
         <archive>
           <manifest>
             <addClasspath>true</addClasspath>
+            <mainClass>com.project.App</mainClass>
           </manifest>
         </archive>
       </configuration>
