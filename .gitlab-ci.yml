@@ -1,4 +1,4 @@
-image: maven
+image: ubuntu:latest
 
 before_script:
   - apt-get update --yes > /dev/null
