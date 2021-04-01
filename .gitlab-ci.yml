@@ -1,9 +1,5 @@
 image: ubuntu:latest
 
-before_script:
-  - apt-get update --yes > /dev/null
-  - DEBIAN_FRONTEND=noninteractive apt-get -y install cmake gcc g++ > /dev/null
-
 stages:
   - build
   - test
@@ -13,6 +9,8 @@ build:
   script: 
     - mvn compile 
     - echo "Building the app"
+only: 
+   - master 
 
 test:
   stage: test
