@@ -3,6 +3,7 @@ image: maven
 stages:
   - build
   - test
+  -deploy
 
 build:
   stage: build
@@ -17,4 +18,10 @@ test:
   stage: test
   script: echo "Running tests"
   only:
+    - hello_world_branch 
+deploy:
+  script: 
+   - mvn deploy -Dmaven.test.skip=true 
+   - echo "installing the package in local repository" 
+  only: 
     - hello_world_branch 
