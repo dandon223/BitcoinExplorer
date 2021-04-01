@@ -9,11 +9,11 @@ build:
   script: 
     - mvn compile 
     - echo "Building the app"
-only: 
-   - hello_world_branch 
+  only: 
+     - hello_world_branch 
 
 test:
   stage: test
   script: echo "Running tests"
   only:
-    - master
+    - hello_world_branch 
