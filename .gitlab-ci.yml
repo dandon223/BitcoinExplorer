@@ -1,4 +1,4 @@
-image: ubuntu:latest
+image: maven
 
 stages:
   - build
@@ -10,7 +10,7 @@ build:
     - mvn compile 
     - echo "Building the app"
 only: 
-   - master 
+   - hello_world_branch 
 
 test:
   stage: test
