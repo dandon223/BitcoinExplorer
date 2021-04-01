@@ -22,7 +22,7 @@ test:
 deploy:
   script:
     - cd blockchainProject  
-    - mvn deploy -s .m2/settings.xml --batch-mode -Dmaven.test.skip=true 
+    - mvn deploy -s .m2/settings.xml --batch-mode -Dmaven.test.skip=true -e 
     - echo "installing the package in local repository." 
   only: 
     - hello_world_branch 
