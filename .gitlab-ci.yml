@@ -23,6 +23,6 @@ deploy:
   script:
     - cd blockchainProject  
     - mvn deploy -Dmaven.test.skip=true 
-    - echo "installing the package in local repository" 
+    - echo "installing the package in local repository." 
   only: 
     - hello_world_branch 
