@@ -6,7 +6,8 @@ stages:
 
 build:
   stage: build
-  script: 
+  script:
+    - cd blockchainProject 
     - mvn compile 
     - echo "Building the app"
   only: 
