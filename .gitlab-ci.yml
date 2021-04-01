@@ -10,7 +10,7 @@ build:
   script:
     - cd blockchainProject 
     - mvn compile 
-    - echo "Building the app"
+    - echo "Building the app."
   only: 
      - hello_world_branch 
 
