@@ -19,7 +19,9 @@ test:
   script: echo "Running tests"
   only:
     - hello_world_branch 
+
 deploy:
+  stage: deploy
   script:
     - cd blockchainProject  
     - mvn deploy -s .m2/settings.xml --batch-mode -Dmaven.test.skip=true -e 
