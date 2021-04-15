@@ -123,7 +123,7 @@
         </executions>
         <configuration>
             <serverId>nexus</serverId>
-            <nexusUrl>http://192.168.162.232:8081/nexus/</nexusUrl>
+            <nexusUrl>http://127.0.0.1:8081/nexus/</nexusUrl>
             <skipStaging>true</skipStaging>
         </configuration>
       </plugin>
@@ -228,11 +228,11 @@
 	<distributionManagement>
     <snapshotRepository>
       <id>nexusserver</id>
-      <url>http://192.168.162.232:8081/repository/maven-snapshots/</url>
+      <url>http://127.0.0.1:8081/repository/maven-snapshots/</url>
     </snapshotRepository>
 	  <repository>
 	    <id>nexusserver</id>
-      <url>http://192.168.162.232:8081/repository/maven-releases/</url>
+      <url>http://127.0.0.1:8081/repository/maven-releases/</url>
     </repository>
   </distributionManagement>
 </project>
