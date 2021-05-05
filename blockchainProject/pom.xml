@@ -82,4 +82,15 @@
       </plugins>
     </pluginManagement>
   </build>
+  <distributionManagement>
+    <snapshotRepository>
+      <id>nexusserver</id>
+      <url>http://172.17.0.3:8081/repository/maven-snapshots/</url>
+    </snapshotRepository>
+	  <repository>
+	    <id>nexusserver</id>
+      <url>http://192.168.194.200:6969/repository/maven-releases/</url>
+    </repository>
+  </distributionManagement>
+
 </project>
