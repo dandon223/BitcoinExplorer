@@ -12,6 +12,12 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Date;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -32,18 +38,37 @@ public class ApiGetMessageServlet extends HttpServlet {
             HttpResponse<String> responsex = httpClient.send(requestx, HttpResponse.BodyHandlers.ofString());
             String str = "[" + responsex.body() + "]";
             // print response body
-            //System.out.println(responsex.body());
+            //out.println(responsex.body());
             JSONArray array = new JSONArray(str);
             JSONObject object = array.getJSONObject(0);
             double money = object.getDouble("rate");
+            out.println("{ \"BTC/USD\": \""+money+" \" }");
+
+            Connection con = null;
+            Class.forName("com.mysql.jdbc.Driver"); 
+            con = DriverManager.getConnection("jdbc:mysql://192.168.194.200:3306/PIK?"
+                + "useLegacyDatetimeCode=false&serverTimezone=UTC&" + "user=root&password=nowehaslo");
+            PreparedStatement stmt = con.prepareStatement("INSERT INTO USDBTC (USD) VALUES(?)");
+            stmt.setDouble(1,money);
+            //stmt.setNull(2,java.sql.Types.TIMESTAMP);
+            stmt.execute();
+            con.close();
       
             
-            out.println("{ \"BTC/USD\": \""+money+" \" }"); 
+             
       } catch (URISyntaxException e) {
          // TODO Auto-generated catch block
          e.printStackTrace();
       } catch (InterruptedException e) {
         // TODO Auto-generated catch block
+        e.printStackTrace();
+    } catch (SQLException e) {
+         PrintWriter out = response.getWriter();
+         out.println("{ Something went wrong }");
+        e.printStackTrace();
+    } catch (ClassNotFoundException e) {
+         PrintWriter out = response.getWriter();
+         out.println("{ Class not found.}");
         e.printStackTrace();
     }
       
