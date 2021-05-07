@@ -40,11 +40,11 @@ public class ApiGetMessageServlet extends HttpServlet {
         double money = getLastUSD(out);
         
         if(money!=-1){
-            out.println("{ \"BTC/USD\": \""+money+" \" }");
+            out.println("{ \"BTC/USD\": \""+money+"\" }");
             insertUSD(money, out);
         }
       }else{
-          out.println("{error: Not enough time passed}");
+          out.println("{ \"error\": \"Not enough time passed\"}");
       }
    }
    void insertUSD(double money,PrintWriter out){
@@ -58,10 +58,10 @@ public class ApiGetMessageServlet extends HttpServlet {
         stmt.execute();
         con.close();
     } catch (SQLException e) {
-        out.println("{error: SQLException in getLastTime }");
+        out.println("{\"error\": \"SQLException in getLastTime\" }");
         e.printStackTrace();
     } catch (ClassNotFoundException e) {
-        out.println("{error: ClassNotFoundException in getLastTime }");
+        out.println("{\"error\": \"ClassNotFoundException in getLastTime\" }");
         e.printStackTrace();
     }
    }
@@ -76,16 +76,16 @@ public class ApiGetMessageServlet extends HttpServlet {
             JSONObject object = array.getJSONObject(0);
             return object.getDouble("rate");
         } catch(JSONException e){
-            out.println("{error: JSONException in getLastUSD }");
+            out.println("{\"error\": \"JSONException in getLastUSD\" }");
             e.printStackTrace();
         } catch (URISyntaxException e) {
-            out.println("{error: URISyntaxException in getLastUSD }");
+            out.println("{\"error\": \"URISyntaxException in getLastUSD\" }");
             e.printStackTrace();
         } catch (IOException e) {
-            out.println("{error: IOException in getLastUSD }");
+            out.println("{\"error\": \"IOException in getLastUSD\" }");
             e.printStackTrace();
         } catch (InterruptedException e) {
-            out.println("{error: InterruptedException in getLastUSD }");
+            out.println("{\"error\": \"InterruptedException in getLastUSD\" }");
             e.printStackTrace();
         };
             
@@ -105,10 +105,10 @@ public class ApiGetMessageServlet extends HttpServlet {
         con.close();
         return last;
     } catch (SQLException e) {
-        out.println("{ SQLException in getLastTime }");
+        out.println("{\"error\": \"SQLException in getLastTime\" }");
         e.printStackTrace();
     } catch (ClassNotFoundException e) {
-        out.println("{ ClassNotFoundException in getLastTime }");
+        out.println("{\"error\": \"ClassNotFoundException in getLastTime\" }");
         e.printStackTrace();
     }
     return null;
