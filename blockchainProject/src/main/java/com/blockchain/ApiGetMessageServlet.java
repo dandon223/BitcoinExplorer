@@ -15,10 +15,13 @@ import java.net.http.HttpResponse;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
+import java.sql.Statement;
+import java.sql.Timestamp;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ApiGetMessageServlet extends HttpServlet {
@@ -29,49 +32,86 @@ public class ApiGetMessageServlet extends HttpServlet {
       throws ServletException, IOException {
       
       response.setContentType("application/json");
-      HttpClient httpClient = HttpClient.newBuilder().build();
-      HttpRequest requestx;
-      try {
-         PrintWriter out = response.getWriter();
-         requestx = HttpRequest.newBuilder(new URI("https://rest.coinapi.io/v1/exchangerate/BTC/USD"))
-            .headers("X-CoinAPI-Key", "3707CA9C-9195-4C2C-925D-64E49EA413B6").GET().build();
-            HttpResponse<String> responsex = httpClient.send(requestx, HttpResponse.BodyHandlers.ofString());
-            String str = "[" + responsex.body() + "]";
-            // print response body
-            //out.println(responsex.body());
-            JSONArray array = new JSONArray(str);
-            JSONObject object = array.getJSONObject(0);
-            double money = object.getDouble("rate");
-            out.println("{ \"BTC/USD\": \""+money+" \" }");
-
-            Connection con = null;
-            Class.forName("com.mysql.jdbc.Driver"); 
-            con = DriverManager.getConnection("jdbc:mysql://192.168.194.200:3306/PIK?"
-                + "useLegacyDatetimeCode=false&serverTimezone=UTC&" + "user=root&password=nowehaslo");
-            PreparedStatement stmt = con.prepareStatement("INSERT INTO USDBTC (USD) VALUES(?)");
-            stmt.setDouble(1,money);
-            //stmt.setNull(2,java.sql.Types.TIMESTAMP);
-            stmt.execute();
-            con.close();
+      PrintWriter out = response.getWriter();
       
-            
-             
-      } catch (URISyntaxException e) {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
-      } catch (InterruptedException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
+      Timestamp last = getLastTime(out);
+      Timestamp now = new Timestamp(System.currentTimeMillis());
+      if((now.getTime() - last.getTime())> 15*60*1000 ){
+        double money = getLastUSD(out);
+        
+        if(money!=-1){
+            out.println("{ \"BTC/USD\": \""+money+" \" }");
+            insertUSD(money, out);
+        }
+      }else{
+          out.println("{error: Not enough time passed}");
+      }
+   }
+   void insertUSD(double money,PrintWriter out){
+       try {
+        Connection con = null;
+        Class.forName("com.mysql.jdbc.Driver"); 
+        con = DriverManager.getConnection("jdbc:mysql://192.168.194.200:3306/PIK?"
+            + "useLegacyDatetimeCode=false&serverTimezone=UTC&" + "user=root&password=nowehaslo");
+        PreparedStatement stmt = con.prepareStatement("INSERT INTO USDBTC (USD) VALUES(?)");
+        stmt.setDouble(1,money);
+        stmt.execute();
+        con.close();
     } catch (SQLException e) {
-         PrintWriter out = response.getWriter();
-         out.println("{ Something went wrong }");
+        out.println("{error: SQLException in getLastTime }");
         e.printStackTrace();
     } catch (ClassNotFoundException e) {
-         PrintWriter out = response.getWriter();
-         out.println("{ Class not found.}");
+        out.println("{error: ClassNotFoundException in getLastTime }");
         e.printStackTrace();
     }
-      
+   }
+   double getLastUSD(PrintWriter out){
+        HttpClient httpClient = HttpClient.newBuilder().build();
+        try {
+            HttpRequest request = HttpRequest.newBuilder(new URI("https://rest.coinapi.io/v1/exchangerate/BTC/USD"))
+                .headers("X-CoinAPI-Key", "3707CA9C-9195-4C2C-925D-64E49EA413B6").GET().build();
+            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+            String str = "[" + response.body() + "]";
+            JSONArray array = new JSONArray(str);
+            JSONObject object = array.getJSONObject(0);
+            return object.getDouble("rate");
+        } catch(JSONException e){
+            out.println("{error: JSONException in getLastUSD }");
+            e.printStackTrace();
+        } catch (URISyntaxException e) {
+            out.println("{error: URISyntaxException in getLastUSD }");
+            e.printStackTrace();
+        } catch (IOException e) {
+            out.println("{error: IOException in getLastUSD }");
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            out.println("{error: InterruptedException in getLastUSD }");
+            e.printStackTrace();
+        };
+            
+       return -1;
+   }
+   Timestamp getLastTime(PrintWriter out){
+    try {
+        Connection con = null;
+        Class.forName("com.mysql.jdbc.Driver"); 
+        con = DriverManager.getConnection("jdbc:mysql://192.168.194.200:3306/PIK?"
+            + "useLegacyDatetimeCode=false&serverTimezone=UTC&" + "user=root&password=nowehaslo");
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT time FROM USDBTC ORDER BY time LIMIT 1");
+        rs.next();
+        Timestamp last = Timestamp.valueOf(rs.getString("time"));
+        rs.close();
+        con.close();
+        return last;
+    } catch (SQLException e) {
+        out.println("{ SQLException in getLastTime }");
+        e.printStackTrace();
+    } catch (ClassNotFoundException e) {
+        out.println("{ ClassNotFoundException in getLastTime }");
+        e.printStackTrace();
+    }
+    return null;
    }
 
 }
