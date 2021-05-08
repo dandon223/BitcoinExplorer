@@ -98,10 +98,9 @@ public class ApiGetMessageServlet extends HttpServlet {
         con = DriverManager.getConnection("jdbc:mysql://192.168.194.200:3306/PIK?"
             + "useLegacyDatetimeCode=false&serverTimezone=UTC&" + "user=root&password=nowehaslo");
         Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT time FROM USDBTC ORDER BY time LIMIT 1");
+        ResultSet rs = stmt.executeQuery("SELECT time FROM USDBTC ORDER BY time DESC LIMIT 1");
         rs.next();
         Timestamp last = Timestamp.valueOf(rs.getString("time"));
-        rs.close();
         con.close();
         return last;
     } catch (SQLException e) {
