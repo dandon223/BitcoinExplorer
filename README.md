@@ -45,19 +45,30 @@ Podobnie Maven łatwo zainstalować komendą
 Repozytorium Nexus OSS w naszym projekcie jest uruchamiane z kontenera docker. Instalacja dockera jest dokładnie opisana w dokumentacji docker’a https://docs.docker.com/engine/install/ubuntu/ - należy podążając za instrukcjami w niej zawartymi zainicjować repozytorium oraz zainstalować docker engine.
 
 Następnie zgodnie z instrukcjami ze strony https://blog.sonatype.com/sonatype-nexus-installation-using-docker należy ściągnąć kontener z nexusem komendą 
+
 **docker pull sonatype/nexus**
+
 oraz zbudować komendą 
+
 **docker build –rm –tag sonatype/nexus oss/**
+
 Kontener należy uruchomić komendą 
+
 **docker run -d -p 6969:8081 –name nexus sonatype/nexus:oss**
+
 którą przypisujemy portowi 8081 na którym słucha nexus w dockerze port 6969 maszyny host’a, umożliwiając komunikację między nimi.
 
 Ostatnim z niezbędnych narzędzi jest Jenkins, którego zgodnie z jego instrukcją instalacji https://www.jenkins.io/doc/book/installing/linux/ można dokonać wywołując szereg komend:
 
+
 **wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -**
+
 **sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary >**
+
 **/etc/apt/sources.list.d/jenkins.list'**
+
 **sudo apt-get update**
+
 **sudo apt-get install Jenkins**
 
 # Uruchomienie aplikacji
