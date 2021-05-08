@@ -43,7 +43,6 @@ public class ApiGetMessageServlet extends HttpServlet {
             insertUSD(money, out);
         }
       }else{
-            out.println("{ \"error\": \"Not enough time passed\"}");
             lastPrice(out);
             
           
@@ -60,8 +59,9 @@ public class ApiGetMessageServlet extends HttpServlet {
         rs.next();
         Timestamp last = Timestamp.valueOf(rs.getString("time"));
         double money = rs.getDouble("usd");
-        out.println("{ \"time\": \""+last+"\"}");
-        out.println("{ \"usd\": \""+money+"\"}");
+        String output = "{ \"error\": \"Not enough time passed\","+ "\"time\": \""+last+"\"";
+        output = output +",\"usd\": \""+money+"\"}";
+        out.println(output);
         con.close();
     } catch (SQLException e) {
         out.println("{\"error\": \"SQLException in lastPrice\" }");
