@@ -18,13 +18,19 @@ function App() {
   }, [readCoin]);
   return (
     <div>
-      {readCoin ? ((readCoinItem) => {
-        return <div>Hellaa</div>
-        
-      })
-      : "loading data ... "}
-      </div>
-  );
+      <div>{JSON.stringify(readCoin).replace(/{|[}]|["]/g, '')}</div>
+    </div>);
+  //   <div>
+  //     {readCoin ? (() => {
+  //       return(
+  //         <div>
+  //         Hellaa
+  //         </div>
+  //       )
+  //     })
+  //     : "loading data ... "}
+  //     </div>
+  // );
 }
 
 export default App;

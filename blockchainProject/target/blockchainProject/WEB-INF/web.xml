@@ -5,6 +5,15 @@
 
   <display-name>My App</display-name>
 
+  <filter>
+    <filter-name>CorsFilter</filter-name>
+    <filter-class>main.java.com.blockchain.CORSFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+      <filter-name>CorsFilter</filter-name>
+      <url-pattern>/*</url-pattern>
+  </filter-mapping>
 
   <servlet>
     <servlet-name>ApiServlet</servlet-name>
@@ -26,6 +35,3 @@
   </servlet-mapping>
 
 </web-app>
-
-
-
