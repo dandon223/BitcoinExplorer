@@ -38,14 +38,38 @@ public class ApiGetMessageServlet extends HttpServlet {
       Timestamp now = new Timestamp(System.currentTimeMillis());
       if((now.getTime() - last.getTime())> 15*60*1000 ){
         double money = getLastUSD(out);
-        
         if(money!=-1){
             out.println("{ \"BTC/USD\": \""+money+"\" }");
             insertUSD(money, out);
         }
       }else{
-          out.println("{ \"error\": \"Not enough time passed\"}");
+            lastPrice(out);
+            
+          
       }
+   }
+   void lastPrice(PrintWriter out){
+    try {
+        Connection con = null;
+        Class.forName("com.mysql.jdbc.Driver"); 
+        con = DriverManager.getConnection("jdbc:mysql://192.168.194.200:3306/PIK?"
+            + "useLegacyDatetimeCode=false&serverTimezone=UTC&" + "user=root&password=nowehaslo");
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM USDBTC ORDER BY time DESC LIMIT 1");
+        rs.next();
+        Timestamp last = Timestamp.valueOf(rs.getString("time"));
+        double money = rs.getDouble("usd");
+        String output = "{ \"error\": \"Not enough time passed\","+ "\"time\": \""+last+"\"";
+        output = output +",\"usd\": \""+money+"\"}";
+        out.println(output);
+        con.close();
+    } catch (SQLException e) {
+        out.println("{\"error\": \"SQLException in lastPrice\" }");
+        e.printStackTrace();
+    } catch (ClassNotFoundException e) {
+        out.println("{\"error\": \"ClassNotFoundException in lastPrice\" }");
+        e.printStackTrace();
+    }
    }
    void insertUSD(double money,PrintWriter out){
        try {
