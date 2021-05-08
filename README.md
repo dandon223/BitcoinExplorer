@@ -29,12 +29,18 @@ All your files and folders are presented as a tree in the file explorer. You can
 ## Instalacja komponentów
 
 W pierwszej kolejności należy zainstalować javę oraz komponenty niezbędne do działania projektu.Przed wykonaniem wszelkich instalacji zalecana jest aktualizacja systemu do najnowszej wersji używając sudo apt-get update.Javę najprościej zainstalować poleceniem terminalowym 
+
 **sudo apt-get install openjdk-11-jdk.**
+
 Poprawność instalacji łatwo sprawdzić poleceniem
+
 **java -version.**
 
+
 Podobnie Maven łatwo zainstalować komendą
+
 **sudo apt install maven.**
+
 
 Repozytorium Nexus OSS w naszym projekcie jest uruchamiane z kontenera docker. Instalacja dockera jest dokładnie opisana w dokumentacji docker’a https://docs.docker.com/engine/install/ubuntu/ - należy podążając za instrukcjami w niej zawartymi zainicjować repozytorium oraz zainstalować docker engine.
 
