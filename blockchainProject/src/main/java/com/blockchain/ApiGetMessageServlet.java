@@ -48,14 +48,14 @@ public class ApiGetMessageServlet extends HttpServlet {
           
       }
    }
-   void lastPrice(PrintWriter out){
+   public void lastPrice(PrintWriter out){
     try {
         Connection con = null;
         Class.forName("com.mysql.jdbc.Driver"); 
         con = DriverManager.getConnection("jdbc:mysql://192.168.194.200:3306/PIK?"
             + "useLegacyDatetimeCode=false&serverTimezone=UTC&" + "user=root&password=nowehaslo");
         Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM USDBTC ORDER BY time DESC LIMIT 1");
+        ResultSet rs = stmt.executeQuery("SELECT * FROM USDBTC WHERE usd!=-1 ORDER BY time DESC LIMIT 1");
         rs.next();
         Timestamp last = Timestamp.valueOf(rs.getString("time"));
         double money = rs.getDouble("usd");
@@ -71,7 +71,7 @@ public class ApiGetMessageServlet extends HttpServlet {
         e.printStackTrace();
     }
    }
-   void insertUSD(double money,PrintWriter out){
+   public void insertUSD(double money,PrintWriter out){
        try {
         Connection con = null;
         Class.forName("com.mysql.jdbc.Driver"); 
@@ -89,7 +89,7 @@ public class ApiGetMessageServlet extends HttpServlet {
         e.printStackTrace();
     }
    }
-   double getLastUSD(PrintWriter out){
+   public double getLastUSD(PrintWriter out){
         HttpClient httpClient = HttpClient.newBuilder().build();
         try {
             HttpRequest request = HttpRequest.newBuilder(new URI("https://rest.coinapi.io/v1/exchangerate/BTC/USD"))
@@ -102,6 +102,7 @@ public class ApiGetMessageServlet extends HttpServlet {
         } catch(JSONException e){
             out.println("{\"error\": \"JSONException in getLastUSD\" }");
             e.printStackTrace();
+            return -1;
         } catch (URISyntaxException e) {
             out.println("{\"error\": \"URISyntaxException in getLastUSD\" }");
             e.printStackTrace();
@@ -115,7 +116,7 @@ public class ApiGetMessageServlet extends HttpServlet {
             
        return -1;
    }
-   Timestamp getLastTime(PrintWriter out){
+   public Timestamp getLastTime(PrintWriter out){
     try {
         Connection con = null;
         Class.forName("com.mysql.jdbc.Driver"); 
