@@ -34,4 +34,13 @@
     <url-pattern>/api/getMessage</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>ApiGetBlock</servlet-name>
+    <servlet-class>com.blockchain.ApiGetBlock</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ApiGetBlock</servlet-name>
+    <url-pattern>/api/getBlock</url-pattern>
+  </servlet-mapping>
+
 </web-app>

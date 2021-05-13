@@ -18,7 +18,10 @@ public class ApiServlet extends HttpServlet {
       response.setContentType("text/html");
 
       PrintWriter out = response.getWriter();
-      out.println("./api works. Try <a href='./api/getMessage'>./api/getMessage</a>");
+      String str= "./api works. Try <a href='./api/getMessage'>./api/getMessage</a>";
+      str = str+ "\n";
+      str = str + "Try <a href='./api/getBlock'>./api/getBlock</a>";
+      out.println(str);
    }
 
 }
