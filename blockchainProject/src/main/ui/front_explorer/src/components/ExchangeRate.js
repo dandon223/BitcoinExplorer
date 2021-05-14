@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
 import {useEffect, useState} from "react";
-import {FontAwesome} from "react-icons/fa";
+// import {FontAwesome} from "react-icons/fa";
 
 import {FaSearchDollar} from "react-icons/fa"
 import { IconContext } from 'react-icons/lib';

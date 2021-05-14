@@ -1,7 +1,7 @@
 import React from "react"
 import Tabs from "./Tabs";
 import ExchangeRate from "./ExchangeRate"; 
-
+import GetBlock from "./GetBlock";
 class ExplorerContainer extends React.Component {
   render() {
     return (
@@ -12,7 +12,7 @@ class ExplorerContainer extends React.Component {
          <ExchangeRate/>
        </div> 
        <div label="Szukany blok"> 
-        Work in progress
+        <GetBlock/>
        </div> 
        <div label="Szukany kopacz"> 
         Work in progress
