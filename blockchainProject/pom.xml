@@ -190,7 +190,7 @@
   <distributionManagement>
     <snapshotRepository>
       <id>nexusserver</id>
-      <url>http://172.17.0.3:8081/repository/maven-snapshots/</url>
+      <url>localhost:6969/repository/maven-snapshots/</url>
     </snapshotRepository>
 	  <repository>
 	    <id>nexusserver</id>
