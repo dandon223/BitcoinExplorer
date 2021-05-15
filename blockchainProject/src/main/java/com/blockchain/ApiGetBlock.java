@@ -12,10 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 public class ApiGetBlock extends HttpServlet{
     private static final long serialVersionUID = 1L;
@@ -26,8 +23,9 @@ public class ApiGetBlock extends HttpServlet{
       response.setContentType("application/json");
       HttpClient httpClient = HttpClient.newBuilder().build();
       PrintWriter out = response.getWriter();
+      String paramValue = "https://blockchain.info/rawblock/"+request.getParameter("hash");
         try {
-            HttpRequest requestX = HttpRequest.newBuilder(new URI("https://blockchain.info/rawblock/0000000000000bae09a7a393a8acded75aa67e46cb81f7acaa5ad94f9eacd103"))
+            HttpRequest requestX = HttpRequest.newBuilder(new URI(paramValue))
                 .GET().build();
             HttpResponse<String> responseX = httpClient.send(requestX, HttpResponse.BodyHandlers.ofString());
             String str = "[" + responseX.body() + "]";
