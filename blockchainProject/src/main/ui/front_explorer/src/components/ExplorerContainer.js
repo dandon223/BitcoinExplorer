@@ -2,6 +2,7 @@ import React from "react"
 import Tabs from "./Tabs";
 import ExchangeRate from "./ExchangeRate"; 
 import GetBlock from "./GetBlock";
+import GetBlockHash from "./GetBlockHash";
 class ExplorerContainer extends React.Component {
   render() {
     return (
