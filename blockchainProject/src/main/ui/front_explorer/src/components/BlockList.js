@@ -45,25 +45,21 @@ import React, {useEffect, useState} from 'react';
 // }
 
 function BlockList(props) {
-    const[readBlock, setreadBlock] = useState(null);
+    const[readBlock, setreadBlock] = useState();
 
     useEffect(() => {
         if(props.blockByHash != ""){
-
-            if(!readBlock){
                 fetch("http://localhost:8080/blockchainProject-2.0-SNAPSHOT/api/getBlock?hash=" + props.blockByHash)
                 .then((response) => response.json())
                 .then((data) => {
                 setreadBlock(data);
                 });
-            } 
         }
     }, [props.blockByHash]);
 
     return (
       <div>
         <div>{JSON.stringify(readBlock)}</div>
-        {/* <div>{props.blockByHash}</div> */}
       </div>);
   }
 export default BlockList;
