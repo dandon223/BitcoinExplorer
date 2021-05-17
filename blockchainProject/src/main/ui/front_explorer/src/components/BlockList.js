@@ -48,13 +48,12 @@ function BlockList(props) {
     const[readBlock, setreadBlock] = useState(null);
 
     useEffect(() => {
-        if(props.blockByHash){
+        if(props.blockByHash != ""){
 
             if(!readBlock){
-                fetch("http://localhost:8080/blockchainProject-2.0-SNAPSHOT/api/getBlock?hash=" + props.readHash)
+                fetch("http://localhost:8080/blockchainProject-2.0-SNAPSHOT/api/getBlock?hash=" + props.blockByHash)
                 .then((response) => response.json())
                 .then((data) => {
-                console.log(data);
                 setreadBlock(data);
                 });
             } 
@@ -64,7 +63,7 @@ function BlockList(props) {
     return (
       <div>
         <div>{JSON.stringify(readBlock)}</div>
-        <div>{JSON.stringify(props.readHash)}</div>
+        {/* <div>{props.blockByHash}</div> */}
       </div>);
   }
 export default BlockList;
