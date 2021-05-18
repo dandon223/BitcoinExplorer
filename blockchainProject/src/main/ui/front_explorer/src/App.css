@@ -1,3 +1,17 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  line-height: 1.4;
+  color: #444;
+  background: #fff;
+  height: 100vh;
+}
+
 .tab-list {  border-bottom: 1px solid #ccc;
     padding-left: 0;
   }
@@ -15,4 +29,45 @@ padding: 0.5rem 0.75rem;
 background-color: rgb(4, 196, 255);
 border: solid #ccc;
 border-width: 1px 1px 0 1px;
+}
+
+.input-text {
+  font-size: 1rem;
+  font-weight: 400;
+  width: 85%;
+  padding-right: 5px;
+  padding-left: 10px;
+  border-radius: calc(0.5 * 100px);
+}
+
+.hash-container {
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  border-radius: calc(0.5 * 100px);
+  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.38);
+  justify-content: space-evenly;
+}
+
+.hash-input {
+  font-size: 1rem;
+  font-weight: 400;
+  width: 65%;
+  padding-right: 5px;
+  padding-left: 10px;
+  border-radius: calc(0.5 * 100px);
+}
+
+.hash-input::placeholder {
+  color: #000;
+}
+
+.hash-submit {
+  background: transparent;
+  color: #5b5b5b;
+  text-transform: capitalize;
+  cursor: pointer;
+  border-radius: calc(0.5 * 100px);
+  font-weight: 600;
+  margin-right: 10px;
 }
