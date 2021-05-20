@@ -12,7 +12,7 @@ function ExchangeRate() {
     useEffect(() => {
 
     if(!readCoin){
-        fetch("http://localhost:8080/blockchainProject-2.0-SNAPSHOT/api/getMessage")
+        fetch("http://192.168.194.200:8082/myapp/api/getMessage")
         .then((response) => response.json())
         .then((data) => {
           console.log("Current bCoin rate: ", data);

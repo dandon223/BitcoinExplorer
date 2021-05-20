@@ -7,7 +7,7 @@
 
   <filter>
     <filter-name>CorsFilter</filter-name>
-    <filter-class>main.java.com.blockchain.CORSFilter</filter-class>
+    <filter-class>com.blockchain.CORSFilter</filter-class>
   </filter>
   
   <filter-mapping>
