@@ -45,21 +45,70 @@ import React, {useEffect, useState} from 'react';
 // }
 
 function BlockList(props) {
-    const[readBlock, setreadBlock] = useState();
+    const[readBlock, setreadBlock] = useState({
+      Block: ""
+    });
+
+    const [blockTrans, setBlockTrans] = useState([])
+
 
     useEffect(() => {
         if(props.blockByHash != ""){
                 fetch("http://localhost:8080/blockchainProject-2.0-SNAPSHOT/api/getBlock?hash=" + props.blockByHash)
                 .then((response) => response.json())
                 .then((data) => {
-                setreadBlock(data);
+                setreadBlock(data[0]);
+                setBlockTrans(data[0].tx);
+                console.log(data);
                 });
+
         }
     }, [props.blockByHash]);
 
     return (
-      <div>
-        <div>{JSON.stringify(readBlock)}</div>
-      </div>);
+      <>
+        <div>
+          <table border="2">
+            <tbody>
+                <tr>
+                  <td>Block index</td>
+                  <td>{readBlock.block_index}</td>
+                </tr>
+                <tr>
+                  <td>Timestamp</td>
+                  {/* <td>{readBlock.height}</td> */}
+                </tr>
+                <tr>
+                  <td>Number of transactions</td>
+                  <td>{readBlock.n_tx}</td>
+                </tr>
+                <tr>
+                  <td>Bits</td>
+                  <td>{readBlock.bits}</td>
+                </tr>
+                <tr>
+                  <td>Weight</td>
+                  <td>{readBlock.weight}</td>
+                </tr>
+                <tr>
+                  <td>Size</td>
+                  <td>{readBlock.size}</td>
+                </tr>
+                <tr>
+                  <td>next block</td>
+                  <td>{readBlock.next_block[0]}</td>
+                </tr>
+                <tr>
+                  <td>prev block</td>
+                  <td>{readBlock.prev_block}</td>
+                </tr>
+                {/* <tr>
+                  <td>{blockTrans[0]}</td>
+                </tr> */}
+            </tbody>
+          </table>
+        </div>
+      </>
+    );
   }
 export default BlockList;
