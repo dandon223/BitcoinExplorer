@@ -17,6 +17,12 @@ class GetBlock extends React.Component {
   };
 
   render() {
+    // const isHash = this.state.readHash;
+    // let blockByHash;
+    // if(isHash) {
+    //   blockByHash =
+    // }
+
     return (
       <div>
         <GetBlockHash handleHashProps={this.handleHash}/>
