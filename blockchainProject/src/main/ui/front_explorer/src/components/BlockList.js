@@ -100,9 +100,18 @@ function BlockList(props) {
                     <td>prev block</td>
                     <td>{readBlock.prev_block}</td>
                   </tr>
-                  {/* <tr>
-                    <td>{blockTrans[0]}</td>
-                  </tr> */}
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <table border="2">
+            <tbody>
+              <tr>
+                Transactions
+              </tr>
+                <tr>
+                </tr>
+                <tr>...</tr>
               </tbody>
             </table>
           </div>
