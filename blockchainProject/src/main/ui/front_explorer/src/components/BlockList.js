@@ -59,16 +59,28 @@ function BlockList(props) {
             </table>
           </div>
           <div>
-            <table border="2">
-            <tbody>
-              <tr>
                 Transactions
-              </tr>
-                <tr>
-                </tr>
-                <tr>...</tr>
-              </tbody>
-            </table>
+                <div>
+                  {blockTrans.map((transaction, i) => {
+                    return (
+                      <div key={i}>
+                        <div>
+                          <h5> Transaction hash: {transaction.hash} </h5>
+                        </div>
+                        <div>
+                          <h5>Transaction fee: {transaction.fee}</h5>
+                        </div>
+                        {transaction.out.map(function(output, i){
+                          return <div key={i}>
+                            <span>Output address:  {output.addr}</span>
+                            <span>Output value:  {output.value}</span>
+                            </div>
+                        })}
+                      </div> 
+                      );
+                    })
+                  }
+                </div>
           </div>
         </>
       );
