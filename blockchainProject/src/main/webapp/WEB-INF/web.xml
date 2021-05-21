@@ -24,6 +24,15 @@
     <url-pattern>/api</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>ApiGetTransaction</servlet-name>
+    <servlet-class>com.blockchain.ApiGetTransaction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ApiGetTransaction</servlet-name>
+    <url-pattern>/api/getTransaction</url-pattern>
+  </servlet-mapping>
+
 
   <servlet>
     <servlet-name>ApiGetMessageServlet</servlet-name>
