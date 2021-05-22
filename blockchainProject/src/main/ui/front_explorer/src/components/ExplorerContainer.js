@@ -4,6 +4,7 @@ import ExchangeRate from "./ExchangeRate";
 import GetBlock from "./GetBlock";
 import GetBlockHash from "./GetBlockHash";
 import Header from "./Header";
+import GetTransaction from "./GetTransaction";
 class ExplorerContainer extends React.Component {
   render() {
     return (
@@ -21,7 +22,7 @@ class ExplorerContainer extends React.Component {
             Work in progress
           </div>
           <div label="Szukana transakcja">
-            Work in progress  
+            <GetTransaction/>
           </div>
           </Tabs> 
         </div>
