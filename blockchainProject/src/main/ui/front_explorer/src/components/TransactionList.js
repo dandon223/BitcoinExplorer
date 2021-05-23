@@ -32,20 +32,26 @@ function TransactionList(props) {
     if(readBlock != "" && inputs !=null && outputs !=null){
     return (
         <div>
-            <table border="2">
-                <tr>
-                    <td>Hash</td>
-                    <td>{readBlock.hash}</td>
-                </tr>
-                <tr>
-                    <td>Input adres</td>
-                    <td>{inputs[0]["prev_out"].addr}</td>
-                </tr>
-                <tr>
-                    <td>Input value</td>
-                    <td>{inputs[0]["prev_out"].value}</td>
-                </tr>   
-            </table>
+          <div>
+                inputs
+                <div>
+                  {inputs.map((transaction, i) => {
+                    return (
+                      <div key={i}>
+                        <div>
+                          <h5> Transaction value: {transaction["prev_out"].value} </h5>
+                        </div>
+                        <div>
+                          <h5>Address: {transaction["prev_out"].addr}</h5>
+                        </div>
+                      </div> 
+                      );
+                    })
+                  }
+                </div>
+                <hr/>
+          </div>
+            
             <div>
                 outputs
                 <div>
