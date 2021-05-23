@@ -43,4 +43,13 @@
     <url-pattern>/api/getBlock</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>LoginClass</servlet-name>
+    <servlet-class>com.blockchain.LoginClass</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginClass</servlet-name>
+    <url-pattern>/api/LoginClass</url-pattern>
+  </servlet-mapping>
+
 </web-app>

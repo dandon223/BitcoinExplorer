@@ -20,7 +20,7 @@ public class ApiServlet extends HttpServlet {
       PrintWriter out = response.getWriter();
       String str= "./api works. Try <a href='./api/getMessage'>./api/getMessage</a>";
       out.println(str);
-      str= "login tests Try <a href='./api/getMessage'>./api/getMessage</a>";
+      str= "login tests Try <a href='./api/LoginClass'>here</a>";
       out.println(str);
    }
 
