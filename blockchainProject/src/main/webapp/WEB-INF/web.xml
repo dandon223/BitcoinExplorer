@@ -52,4 +52,13 @@
     <url-pattern>/api/getBlock</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>ApiGetAddress</servlet-name>
+    <servlet-class>com.blockchain.ApiGetAddress</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ApiGetAddress</servlet-name>
+    <url-pattern>/api/getAddress</url-pattern>
+  </servlet-mapping>
+
 </web-app>
