@@ -171,7 +171,7 @@ class LineChart extends Component {
     const {svgHeight, svgWidth} = this.props;
 
     return (
-      <svg  width="100%" height={svgHeight} viewBox={`0 0 ${svgWidth} ${svgHeight}`} className={'linechart'}
+      <svg  width={svgWidth} height={svgHeight} viewBox={`0 0 ${svgWidth} ${svgHeight}`} className={'linechart'}
             onMouseLeave={ () => this.stopHover() }
             onMouseMove={ (e) => this.getCoords(e) } >
         <g>
@@ -191,6 +191,7 @@ LineChart.defaultProps = {
   data: [],
   color: '#2196F3',
   pointRadius: 5,
+  svgWidth: 1200,
   svgHeight: 300,
   xLabelSize: 20,
   yLabelSize: 80
