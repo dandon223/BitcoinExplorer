@@ -2,9 +2,9 @@ import React from "react"
 import Tabs from "./Tabs";
 import ExchangeRate from "./ExchangeRate"; 
 import GetBlock from "./GetBlock";
-import GetBlockHash from "./GetBlockHash";
 import Header from "./Header";
 import GetTransaction from "./GetTransaction";
+import PriceChart from "./PriceChart";
 class ExplorerContainer extends React.Component {
   render() {
     return (
@@ -14,6 +14,7 @@ class ExplorerContainer extends React.Component {
           <Tabs> 
           <div label="Wykres Cen"> 
             <ExchangeRate/>
+            <PriceChart/>
           </div> 
           <div label="Szukany blok"> 
             <GetBlock/>

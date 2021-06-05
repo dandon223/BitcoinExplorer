@@ -6,7 +6,7 @@ function BlockList(props) {
     const [blockTrans, setBlockTrans] = useState([])
 
     useEffect(() => {
-        if(props.blockByHash != ""){
+        if(props.blockByHash !== ""){
                 fetch("http://192.168.194.200:8082/myapp/api/getBlock?hash=" + props.blockByHash)
                 .then((response) => response.json())
                 .then((data) => {
@@ -17,7 +17,7 @@ function BlockList(props) {
         }
     }, [props.blockByHash]);
 
-    if(readBlock != ""){
+    if(readBlock !== ""){
     return (
         <>
           <div>
