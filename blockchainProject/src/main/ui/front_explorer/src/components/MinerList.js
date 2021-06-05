@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import "./StyledList.css"
 
 function MinerList(props) {
     const[readMiner, setReadMiner] = useState();
@@ -28,11 +29,11 @@ function MinerList(props) {
             };
         } catch (error) {}
     }
-    if(readMiner != null && readTransactions !=null){
+    if(readMiner != "" && readTransactions !=null){
     return (
         <>
         <div>
-            <table border = "2">
+            <table class="styled-table">
                 <tbody>
                     <tr>
                         <td>Transactions</td>
@@ -40,21 +41,21 @@ function MinerList(props) {
                     </tr>
                     <tr>
                         <td>Total received</td>
-                        <td>{readMiner.total_received/DIVIDER}</td>
+                        <td>{readMiner.total_received/DIVIDER} BTC</td>
                     </tr>
                     <tr>
                         <td>Total sent</td>
-                        <td>{readMiner.total_sent/DIVIDER}</td>
+                        <td>{readMiner.total_sent/DIVIDER} BTC</td>
                     </tr>
                     <tr>
                         <td>Final balance</td>
-                        <td>{readMiner.final_balance/DIVIDER}</td>
+                        <td>{readMiner.final_balance/DIVIDER} BTC</td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <div>
-            <ul>
+            <ul class="styled-list">
               {readTransactions.map((transaction, index) => (
                   <li key={index}>
                     <h4>Transaction attributes</h4>

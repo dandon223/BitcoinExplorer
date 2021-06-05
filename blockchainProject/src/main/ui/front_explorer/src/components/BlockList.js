@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import "./StyledList.css"
 
 function BlockList(props) {
     const[readBlock, setreadBlock] = useState("");
@@ -34,7 +35,7 @@ function BlockList(props) {
     return (
         <>
           <div>
-            <table border="2">
+            <table border="2" class="styled-table">
               <tbody>
                   <tr>
                     <td>Block index</td>
@@ -72,7 +73,7 @@ function BlockList(props) {
             </table>
           </div>
           <div>
-            <ul>
+            <ul class="styled-list">
               {blockTrans.map((transaction, index) => (
                   <li key={index}>
                     <h4>Transaction attributes</h4>
