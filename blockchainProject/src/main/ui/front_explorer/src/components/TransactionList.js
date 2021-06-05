@@ -6,7 +6,7 @@ function TransactionList(props) {
     const[outputs, setOutputs] = useState();
 
     useEffect(() => {
-        if(props.transactionByHash != ""){
+        if(props.transactionByHash !== ""){
                 fetch("http://192.168.194.200:8082/myapp/api/getTransaction?hash=" + props.transactionByHash)
                 .then((response) => response.json())
                 .then((data) => {
@@ -18,7 +18,7 @@ function TransactionList(props) {
                 });
         }
     }, [props.transactionByHash]);
-    if(readBlock != "" ){
+    if(readBlock !== "" ){
         try {
             if(readBlock.error){
                 return(
@@ -29,7 +29,7 @@ function TransactionList(props) {
             };
         } catch (error) {}
     }
-    if(readBlock != "" && inputs !=null && outputs !=null){
+    if(readBlock !== "" && inputs !=null && outputs !=null){
     return (
         <div>
           <div>

@@ -7,7 +7,7 @@ function BlockList(props) {
 
 
     useEffect(() => {
-        if(props.blockByHash != ""){
+        if(props.blockByHash !== ""){
                 fetch("http://192.168.194.200:8082/myapp/api/getBlock?hash=" + props.blockByHash)
                 .then((response) => response.json())
                 .then((data) => {
