@@ -2,8 +2,9 @@ import React, {useEffect, useState} from 'react';
 
 function BlockList(props) {
     const[readBlock, setreadBlock] = useState("");
-
     const [blockTrans, setBlockTrans] = useState([])
+    const DIVIDER = 100000000;
+
 
     useEffect(() => {
         if(props.blockByHash != ""){
@@ -16,6 +17,18 @@ function BlockList(props) {
                 });
         }
     }, [props.blockByHash]);
+
+    if(readBlock != null && blockTrans != null){
+      try {
+          if(readBlock.error){
+              return(
+              <div>
+                  <p>Niestety nie znaleziono takiego bloku.</p>
+              </div>
+              );
+          };
+      } catch (error) {}
+    }
 
     if(readBlock != ""){
     return (
@@ -64,12 +77,12 @@ function BlockList(props) {
                   <li key={index}>
                     <h4>Transaction attributes</h4>
                     <div>Hash: {transaction.hash}</div>
-                    <div>Fee: {transaction.fee}</div>
+                    <div>Fee: {transaction.fee/DIVIDER} BTC</div>
                     {transaction.out.map((output, sec_index) => (
                       <li key={sec_index}>
                         <h4>Transaction output: {sec_index + 1}</h4>
                         <div>Address: {output.addr}</div>
-                        <div>Value: {output.value}</div>
+                        <div>Value: {output.value/DIVIDER} BTC</div>
                       </li>
                     ))}
                   </li>
