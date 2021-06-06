@@ -3,9 +3,9 @@ pipeline {
      stages {
         stage("Build") {
             steps {
-                sh "cd blockchainProject"
-                sh "pwd"
-                sh "mvn tomcat7:redeploy"
+                sh "cd blockchainProject
+                pwd"
+                
                 
             }
         }
