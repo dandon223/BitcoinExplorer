@@ -1,13 +1,9 @@
 import {useEffect, useState} from "react";
-// import {FontAwesome} from "react-icons/fa";
 
-import {FaSearchDollar} from "react-icons/fa"
-import { IconContext } from 'react-icons/lib';
-
-
+import "./StyledRate.css"
 
 function ExchangeRate() {
-    const[readCoin, setReadCoin] = useState(null);
+    const[readCoin, setReadCoin] = useState("");
 
     useEffect(() => {
 
@@ -20,15 +16,28 @@ function ExchangeRate() {
         });
       } 
     }, [readCoin]);
-    return (
-      <div>
-        <IconContext.Provider value={{ style: {fontSize: '60px', color: "rgb(0, 123, 255)"}}}>
-        <div><FaSearchDollar /> {JSON.stringify(readCoin).replace(/{|[}]|["]/g, '')}</div>
-        </IconContext.Provider>
-        
-        
-      </div>);
+
+    if(readCoin["usd"] != ""){
+      return (
+        <div class="styled-rate">
+          <h2>Current price of Bitcoin</h2>
+          <h3>{readCoin["usd"]} BTC</h3>
+          <h4>Last update: {readCoin["time"]}</h4>
+        </div>);
+
+    } else if(readCoin["BTC/USD"] != ""){
+      return (
+        <div>
+          <h2>Current price of Bitcoin</h2>
+          <h3>{readCoin["BTC/USD"]} BTC</h3>
+          <h4>Last update: Now</h4>
+        </div>);
+
+    } else {
+      return (
+        <div></div>
+      );
+    }
   }
-  
   export default ExchangeRate;
   
