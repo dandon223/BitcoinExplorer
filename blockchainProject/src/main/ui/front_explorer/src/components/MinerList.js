@@ -61,6 +61,17 @@ function MinerList(props) {
                     <h4>Transaction attributes</h4>
                     <div>Hash: {transaction.hash}</div>
                     <div>Fee: {transaction.fee/DIVIDER} BTC</div>
+                    {transaction.inputs.map((input, sec_index) => {
+                      if(input["prev_out"] != null){
+                        return(
+                        <li key={sec_index}>
+                          <h4>Transaction input: {sec_index + 1}</h4>
+                          <div>Address: {input["prev_out"].addr}</div>
+                          <div>Value: {input["prev_out"].value/DIVIDER} BTC</div>
+                        </li>);
+                      }
+                      
+                    })}
                     {transaction.out.map((output, sec_index) => (
                       <li key={sec_index}>
                         <h4>Transaction output: {sec_index + 1}</h4>
