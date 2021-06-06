@@ -5,11 +5,12 @@ pipeline {
             steps {
                 dir("blockchainProject")
                 {
-                    sh 'ls'
+                    sh 'mvn tomcat7:redeploy'
                 }
                 dir("pik/blockchainProject/src/main/ui/front_explorer")
                 {
-                    sh 'ls'
+                    sh 'npm install'
+                    sh 'npm start'
                     
                 }
 
