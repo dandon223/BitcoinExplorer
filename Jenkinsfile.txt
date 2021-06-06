@@ -5,7 +5,7 @@ pipeline {
             steps {
                 dir("blockchainProject")
                 {
-                    sh 'mvn tomcat7:redeploy'
+                    sh 'mvn clean deploy'
                 }
                 dir("pik/blockchainProject/src/main/ui/front_explorer")
                 {
