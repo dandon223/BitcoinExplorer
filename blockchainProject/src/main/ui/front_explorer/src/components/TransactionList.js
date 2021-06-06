@@ -36,18 +36,20 @@ function TransactionList(props) {
             <h4>inputs</h4>
                 <div>
                   {inputs.map((transaction, i) => {
-                    return (
-                      <ul class="styled-list">
-                        <li key={i}>
-                          <div>
-                            <div> Transaction value: {transaction["prev_out"].value} </div>
-                          </div>
-                          <div>
-                            <div>Address: {transaction["prev_out"].addr}</div>
-                          </div>
-                        </li> 
-                      </ul>
-                      );
+                    if(transaction["prev_out"] != null){
+                      return (
+                        <ul class="styled-list">
+                          <li key={i}>
+                            <div>
+                              <div> Transaction value: {transaction["prev_out"].value} </div>
+                            </div>
+                            <div>
+                              <div>Address: {transaction["prev_out"].addr}</div>
+                            </div>
+                          </li> 
+                        </ul>
+                        );
+                    }
                     })
                   }
                 </div>
