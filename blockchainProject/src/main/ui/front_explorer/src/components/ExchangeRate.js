@@ -20,7 +20,7 @@ function ExchangeRate() {
     if(readCoin["usd"] != ""){
       return (
         <div class="styled-rate">
-          <h2>Current price of our suffering</h2>
+          <h2>Current price of Bitcoin</h2>
           <h3>{Math.round(readCoin["usd"]*100)/100} $</h3>
           <h4>Last update: {readCoin["time"]}</h4>
         </div>);
