@@ -3,7 +3,7 @@ import "./StyledList.css"
 
 function BlockList(props) {
     const[readBlock, setreadBlock] = useState("");
-    const [blockTrans, setBlockTrans] = useState([])
+    const [blockTrans, setBlockTrans] = useState()
     const DIVIDER = 100000000;
 
 
@@ -19,7 +19,7 @@ function BlockList(props) {
         }
     }, [props.blockByHash]);
 
-    if(readBlock != null && blockTrans != null){
+    if(readBlock != null){
       try {
           if(readBlock.error){
               return(
@@ -31,7 +31,7 @@ function BlockList(props) {
       } catch (error) {}
     }
 
-    if(readBlock != ""){
+    if(readBlock != "" && blockTrans != null){
     return (
         <>
           <div>

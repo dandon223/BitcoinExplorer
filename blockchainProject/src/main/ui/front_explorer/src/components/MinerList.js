@@ -8,7 +8,7 @@ function MinerList(props) {
 
     useEffect(() => {
         if(props.minerByHash != ""){
-                fetch("http://localhost:8080/blockchainProject-2.0-SNAPSHOT/api/getAddress?hash=" + props.minerByHash)
+                fetch("http://192.168.194.200:8082/myapp/api/getAddress?hash=" + props.minerByHash)
                 .then((response) => response.json())
                 .then((data) => {
                 setReadMiner(data[0]);
