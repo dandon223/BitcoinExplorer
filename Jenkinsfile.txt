@@ -9,8 +9,8 @@ pipeline {
                 }
                 dir("pik/blockchainProject/src/main/ui/front_explorer")
                 {
-                    sh 'npm install'
-                    sh 'npm start'
+                    sh 'ls'
+                    
                 }
 
                 
