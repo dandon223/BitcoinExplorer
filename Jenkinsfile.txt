@@ -5,7 +5,7 @@ pipeline {
             steps {
                 dir("blockchainProject")
                 {
-                    sh 'mvn clean deploy'
+                    sh 'ls'
                 }
                 dir("pik/blockchainProject/src/main/ui/front_explorer")
                 {
